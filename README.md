@@ -10,5 +10,7 @@
 ## 后续
 突然发现uniPopup组件里面用的就是`scroll-view`组件来嵌套滑动内容，具体代码请自行参考uni-app **Hello**项目，但是由于他把`@touchmove.stop.prevent="moveHandle"`事件放在遮罩层上，所以当弹出框除了列表内容外还有其他内容，滑动其他内容会出现穿透滑动，所以建议把`@touchmove.stop.prevent="moveHandle"`放到最外层`view`上。
 ## 效果图
+### Before
+![image](https://raw.githubusercontent.com/Yiusing/Uni-app-Issue/master/2.gif)
 ### After
 ![image](https://raw.githubusercontent.com/Yiusing/Uni-app-Issue/master/1.gif)
