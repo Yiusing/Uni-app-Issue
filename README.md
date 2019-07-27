@@ -14,3 +14,24 @@
 ![image](https://raw.githubusercontent.com/Yiusing/Uni-app-Issue/master/2.gif)
 ### After
 ![image](https://raw.githubusercontent.com/Yiusing/Uni-app-Issue/master/1.gif)
+
+
+---
+---
+---
+## 二、关于 `Cannot read property "$children" of undefined` 错误。
+经排查引起此错误的原因是当自定义导航栏且使用图标时，在某些情况下会报出错误并且导航栏消失，我的情况是当退出登录跳转至登录页面后再登录并且跳转至当前页面时会出现这种错误。
+## 解决方法
+-  在`fontSrc`这个属性要特别注意路径最前面需要添加**反斜杠/**，不然就会出现上述错误。
+## 示例：
+```
+"app-plus": {  
+        "titleNView": {  
+            "buttons": [{  
+                "text": "\ue534",  
+                "fontSrc": "/static/uni.ttf",  
+                "fontSize": "22px"  
+            }]  
+        }  
+    }  
+```
