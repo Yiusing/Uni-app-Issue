@@ -35,3 +35,36 @@
         }  
     }  
 ```
+---
+## 三、关于 new Date() 在 IOS 中的 BUG。
+在IOS中需要new Date的格式不能出现"2018-04-27 11:11"此种格式，会报出valid Date的错误，正确格式是"2018/04/27 11:11"
+
+---
+
+## 四、关于IOS中利用相机拍照上传图片出现的BUG。
+ 在IOS中若选择相机拍照，预览的图片会旋转了90度，内部原因是orientation的值为6
+## 解决方法
+ 利用EXIF.js文件获取当前图片的orientation值，若不是正常角度的值，则利用canvas改变图片角度，再用canvas转为jpg导出并上传。
+ 
+---
+
+## 五、关于IOS中使用iframe的bug。
+  uni-app中使用web-view组件在H5端跳转外部链接，在IOS中会出现部分网页宽度超出一屏幕宽度导致可以左右滑动。
+## 具体原因
+  iOS下的safari是按照iframe里面页面元素的全尺寸来调整iframe的大小，因此导致宽度变大。
+## 解决方法
+ 在uni-app中判断系统环境是否为ios，ios情况下直接使用iframe来使用，并且添加以下样式
+```
+<iframe scrolling="no"></iframe>
+
+.iframe {
+  width: 1px;
+  min-width: 100%;
+  *width: 100%;
+}
+```
+并且在iframe中添加scrolling属性，值为no，添加此属性后会使除ios系统外的移动端的iframe不能上下滚动，因此要分开用。
+但如果跳转外部链接的网页没有做移动端适配，在`<iframe>`标签上使用了`scrolling="no"`属性，会导致不能左右滚动页面而看不了完整的页面，
+因此建议ios上尽量不使用iframe
+
+---
